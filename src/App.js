@@ -37,6 +37,6 @@ export default class App extends Component {
     }
 
     setCurrentCategory(newCategory) {
-        this.setState({ currentCategory: newCategory })
+        this.setState({ currentCategory: newCategory });
     }
 }

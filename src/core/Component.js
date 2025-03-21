@@ -7,6 +7,7 @@ export default class Component {
         this.props = props;
         this.setup();
         this.render();
+        this.setEvent();
     }
 
     setup(){}
@@ -14,6 +15,15 @@ export default class Component {
     setState(newState){
         this.state = {...this.state, ...newState};
         this.render();
+    }
+
+    setEvent(){}
+
+    addEvent(eventType, selector, callback) {
+        this.$root.addEventListener(eventType, (event) => {
+            if(!event.target.closest(selector)) return false;
+            callback(event);
+        })
     }
 
     template() { return ''}
