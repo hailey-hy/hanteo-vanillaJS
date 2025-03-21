@@ -5,7 +5,7 @@ export default class Category extends Component{
     setup(){
         this.state = {
             catogoryItems: ['차트', 'Whook', '이벤트', '뉴스', '스토어', '충전소'],
-            currentItem: '차트'
+            selectedItem: '차트'
         }
     }
 

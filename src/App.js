@@ -5,6 +5,12 @@ import List from "./components/List.js";
 import Component from "./core/Component.js";
 
 export default class App extends Component {
+
+    setup(){
+        this.state = {
+            currentCategory: '차트',
+        }
+    }
     template(){
         return (
             `
@@ -24,9 +30,13 @@ export default class App extends Component {
         const $list = this.$root.querySelector("[data-component='list']");
         const $footer = this.$root.querySelector("[data-component='footer']");
 
-        new Category($category);
+        new Category($category, { changeCategory: this.setCurrentCategory.bind(this) });
         new Banner($banner);
         new List($list);
         new Footer($footer);
+    }
+
+    setCurrentCategory(newCategory) {
+        this.setState({ currentCategory: newCategory })
     }
 }
