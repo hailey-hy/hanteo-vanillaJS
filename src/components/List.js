@@ -20,14 +20,13 @@ export default class List extends Component{
       `;
     }
 
-    async mounted () {
-        if (this.state.isLoading || this.state.listItemData) return;
-
+    async getCategoryData () {
         this.setState({ isLoading: true });
-
         const data = await fetchData(this.props.currentCategory);
         this.setState({ listItemData: data, isLoading: false });
+    }
 
+    createListItem () {
         const $container = this.$root.querySelector("#list-container");
 
         this.state.listItemData.forEach(item => {
@@ -35,5 +34,12 @@ export default class List extends Component{
             $container.appendChild($div);
             new ListItem($div, { listItemData: item });
         });
+    }
+
+    async mounted () {
+        if (this.state.isLoading || this.state.listItemData) return;
+
+        await this.getCategoryData();
+        this.createListItem();
     }
 }
