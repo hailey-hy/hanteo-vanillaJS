@@ -32,7 +32,7 @@ export default class App extends Component {
 
         new Category($category, { changeCategory: this.setCurrentCategory.bind(this) });
         new Banner($banner);
-        new List($list);
+        new List($list, { currentCategory: this.state.currentCategory });
         new Footer($footer);
     }
 

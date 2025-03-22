@@ -11,7 +11,17 @@ export default class Category extends Component{
 
     template(){
         return `
-            ${this.state.catogoryItems.map(item => `<button>${item}</button>`).join('')}
+            ${this.state.catogoryItems
+                .map((item) => `<button class="tab" data-category="${item}">${item}</button>`).join('')}
         `
     }
+
+    setEvent(){
+        this.addEvent('click', '.tab', ({target}) => {
+            const newCategory = target.dataset.category;
+            this.setState({ selectedItem: newCategory });
+            this.props.changeCategory(newCategory);
+        })
+    }
+    
 }
