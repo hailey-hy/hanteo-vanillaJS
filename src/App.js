@@ -8,7 +8,7 @@ export default class App extends Component {
 
     setup(){
         this.state = {
-            currentCategory: '차트',
+            currentCategory: 'chart',
         }
     }
     template(){

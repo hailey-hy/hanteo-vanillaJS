@@ -4,15 +4,15 @@ export default class Category extends Component{
 
     setup(){
         this.state = {
-            catogoryItems: ['차트', 'Whook', '이벤트', '뉴스', '스토어', '충전소'],
-            selectedItem: '차트'
+            categoryItems: {chart:'차트', Whook: 'Whook', event: '이벤트', news:'뉴스', store: '스토어', cash: '충전소'},
+            selectedItem: 'chart'
         }
     }
 
     template(){
         return `
-            ${this.state.catogoryItems
-                .map((item) => `<button class="tab" data-category="${item}">${item}</button>`).join('')}
+            ${Object.entries(this.state.categoryItems)
+                .map(([key, value]) => `<button class="tab" data-category="${key}">${value}</button>`).join('')}
         `
     }
 
