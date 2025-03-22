@@ -7,7 +7,7 @@ export default class List extends Component{
     setup(){
         this.state = { 
             listItemData : null,
-            isLoading: false,
+            isLoading: true,
         }
     }
 
@@ -21,7 +21,6 @@ export default class List extends Component{
     }
 
     async getCategoryData () {
-        this.setState({ isLoading: true });
         const data = await fetchListData(this.props.currentCategory);
         this.setState({ listItemData: data, isLoading: false });
     }
@@ -37,7 +36,7 @@ export default class List extends Component{
     }
 
     async mounted () {
-        if (this.state.isLoading || this.state.listItemData) return;
+        if (!this.state.isLoading || this.state.listItemData) return;
 
         await this.getCategoryData();
         this.createListItem();
