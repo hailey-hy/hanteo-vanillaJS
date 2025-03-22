@@ -1,4 +1,4 @@
-import { fetchData } from "../api/api.js";
+import { fetchListData } from "../api/api.js";
 import Component from "../core/Component.js";
 import ListItem from "./ListItem.js";
 
@@ -22,7 +22,7 @@ export default class List extends Component{
 
     async getCategoryData () {
         this.setState({ isLoading: true });
-        const data = await fetchData(this.props.currentCategory);
+        const data = await fetchListData(this.props.currentCategory);
         this.setState({ listItemData: data, isLoading: false });
     }
 
