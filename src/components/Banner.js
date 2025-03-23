@@ -28,11 +28,14 @@ export default class Banner extends Component{
                     ${this.state.banners
                         .map(
                         (banner) => `
-                        <a class="banner-slide" href="${banner.link}" target="_blank" rel="noopener">
+                        <div class="banner-slide">
                             <img src="${banner.src}" alt="${banner.title}" />
-                            <div class="banner-title">${banner.title}</div>
+                            <div class="banner-title-wrapper">
+                                <div class="banner-title">${banner.title}</div>
+                                <a class="banner-link" href="${banner.link}" target="_blank" rel="noopener">투표하기</a>
+                            </div>
                             <div class="banner-detail">${banner.detail}</div>
-                        </a>`
+                        </div>`
                         )
                         .join("")}
                     </div>
@@ -57,8 +60,6 @@ export default class Banner extends Component{
     setupSlider() {
         const $track = this.$root.querySelector(".banner-track");
         const $dots = this.$root.querySelectorAll(".dot");
-        const $slide = $track.querySelector(".banner-slide");
-        const slideWidth = $slide.offsetWidth + 12;
         const AUTO_SLIDE_MS = 10000;
 
         const bannerCount = this.state.banners.length;
