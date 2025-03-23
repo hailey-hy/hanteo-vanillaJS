@@ -16,40 +16,81 @@ export default class Banner extends Component{
         const loopedBanner = [data[data.length - 1], ...data, data[0]];
         this.setState({isLoading: false, banners: loopedBanner});
     }
-
     template() {
-        if (this.state.isLoading ) return `<div>로딩 중...</div>`;
-
-        const realBanners = this.state.banners.slice(1, -1);
-         
-        return `
-                <div class="banner-wrapper">
-                    <div class="banner-track" style="transform: translateX(-100%)">
-                    ${this.state.banners
-                        .map(
-                        (banner) => `
-                        <div class="banner-slide">
-                            <img src="${banner.src}" alt="${banner.title}" />
-                            <div class="banner-title-wrapper">
-                                <div class="banner-title">${banner.title}</div>
-                                <a class="banner-link" href="${banner.link}" target="_blank" rel="noopener">투표하기</a>
-                            </div>
-                            <div class="banner-detail">${banner.detail}</div>
-                        </div>`
-                        )
-                        .join("")}
+      const isLoading = this.state.isLoading;
+      const banners = this.state.banners;
+    
+      const realBanners = isLoading
+        ? [null, null, null] // layout shift 방지
+        : banners.slice(1, -1);
+    
+      return `
+        <div class="banner-wrapper">
+          <div class="banner-track" style="transform: translateX(-${this.state.currentIndex * 100}%)">
+            ${banners.length === 0
+              ? realBanners
+                  .map(() => `<div class="banner-slide skeleton"></div>`)
+                  .join("")
+              : banners
+                  .map(
+                    (banner) => `
+                  <div class="banner-slide">
+                    <img src="${banner.src}" alt="${banner.title}" />
+                    <div class="banner-title-wrapper">
+                      <div class="banner-title">${banner.title}</div>
+                      <a class="banner-link" href="${banner.link}" target="_blank" rel="noopener">투표하기</a>
                     </div>
-                    <div class="dot-nav">
-                    ${realBanners
-                        .map(
-                        (_, idx) =>
-                            `<span class="dot ${idx === 0 ? "active" : ""}" data-index="${idx + 1}"></span>`
-                        )
-                        .join("")}
-                    </div>
-                </div>
-                `;
+                    <div class="banner-detail">${banner.detail}</div>
+                  </div>`
+                  )
+                  .join("")}
+          </div>
+          <div class="dot-nav">
+            ${realBanners
+              .map(
+                (_, idx) =>
+                  `<span class="dot ${idx === 0 ? "active" : ""}" data-index="${idx + 1}"></span>`
+              )
+              .join("")}
+          </div>
+        </div>
+      `;
     }
+    
+
+    // template() {
+    //     if (this.state.isLoading ) return `<div>로딩 중...</div>`;
+
+    //     const realBanners = this.state.banners.slice(1, -1);
+         
+    //     return `
+    //             <div class="banner-wrapper">
+    //                 <div class="banner-track" style="transform: translateX(-100%)">
+    //                 ${this.state.banners
+    //                     .map(
+    //                     (banner) => `
+    //                     <div class="banner-slide">
+    //                         <img src="${banner.src}" alt="${banner.title}" />
+    //                         <div class="banner-title-wrapper">
+    //                             <div class="banner-title">${banner.title}</div>
+    //                             <a class="banner-link" href="${banner.link}" target="_blank" rel="noopener">투표하기</a>
+    //                         </div>
+    //                         <div class="banner-detail">${banner.detail}</div>
+    //                     </div>`
+    //                     )
+    //                     .join("")}
+    //                 </div>
+    //                 <div class="dot-nav">
+    //                 ${realBanners
+    //                     .map(
+    //                     (_, idx) =>
+    //                         `<span class="dot ${idx === 0 ? "active" : ""}" data-index="${idx + 1}"></span>`
+    //                     )
+    //                     .join("")}
+    //                 </div>
+    //             </div>
+    //             `;
+    // }
 
     async mounted() {
         if(!this.state.isLoading) return;
