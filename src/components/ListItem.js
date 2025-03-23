@@ -6,8 +6,15 @@ export default class ListItem extends Component{
         const item = this.props.listItemData;
         if(!item) return '';
         return `
-            <div>${item.name}</div>
-            <div>${item.lorem}</div>
+            <div class="list-item-wrapper">
+                <div class="left-section">
+                    
+                </div>
+                <div class="right-section">
+                    <div>${item.name}</div>
+                    <div>${item.lorem}</div>
+                </div>
+            </div>
         `;
     }
 }

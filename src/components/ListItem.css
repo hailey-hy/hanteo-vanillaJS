@@ -1,0 +1,25 @@
+.list-item-wrapper {
+  height: 100px;
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.left-section {
+  height: 100px;
+  background-color: grey;
+  width: 100px;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.right-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+}

@@ -15,6 +15,7 @@ export default class List extends Component{
     template(){
         return `
         <section id="list-container">
+        <div>${this.props.currentCategory}</div>
           ${this.state.listItemData ? "" : "로딩 중..."}
         </section>
       `;
