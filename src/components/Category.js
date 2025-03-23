@@ -5,14 +5,15 @@ export default class Category extends Component{
     setup(){
         this.state = {
             categoryItems: {chart:'차트', Whook: 'Whook', event: '이벤트', news:'뉴스', store: '스토어', cash: '충전소'},
-            selectedItem: 'chart'
+            selectedItem: this.props.currentCategory
         }
     }
 
     template(){
-        return `
+        return `<div class="tab-wrapper">
             ${Object.entries(this.state.categoryItems)
-                .map(([key, value]) => `<button class="tab" data-category="${key}">${value}</button>`).join('')}
+                .map(([key, value]) => `<button class="${this.state.selectedItem === key ? "tab selected" : "tab"}" data-category="${key}">${value}</button>`).join('')}
+            </div>
         `
     }
 

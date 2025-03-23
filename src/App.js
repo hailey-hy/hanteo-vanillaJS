@@ -30,7 +30,7 @@ export default class App extends Component {
         const $list = this.$root.querySelector("[data-component='list']");
         const $footer = this.$root.querySelector("[data-component='footer']");
 
-        new Category($category, { changeCategory: this.setCurrentCategory.bind(this) });
+        new Category($category, { changeCategory: this.setCurrentCategory.bind(this), currentCategory: this.state.currentCategory });
         new Banner($banner);
         new List($list, { currentCategory: this.state.currentCategory });
         new Footer($footer);
