@@ -1,0 +1,23 @@
+.tab-wrapper {
+  overflow-x: scroll;
+  display: flex;
+  flex-direction: row;
+  background-color: pink;
+  justify-content: space-around;
+}
+
+.tab {
+  width: 70px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.selected {
+  color: white;
+}
