@@ -23,6 +23,10 @@ export default class Banner extends Component{
       const realBanners = isLoading
         ? [null, null, null] // layout shift 방지
         : banners.slice(1, -1);
+
+      const getSafeUrl = (url) => {
+        return url.startsWith("http") ? url : `https://${url}`;
+      };
     
       return `
         <div class="banner-wrapper">
@@ -38,7 +42,7 @@ export default class Banner extends Component{
                     <img src="${banner.src}" alt="${banner.title}" />
                     <div class="banner-title-wrapper">
                       <div class="banner-title">${banner.title}</div>
-                      <a class="banner-link" href="${banner.link}" target="_blank" rel="noopener">투표하기</a>
+                      <a class="banner-link" href="${getSafeUrl(banner.link)}" target="_blank" rel="noopener">투표하기</a>
                     </div>
                     <div class="banner-detail">${banner.detail}</div>
                   </div>`
