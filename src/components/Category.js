@@ -1,10 +1,12 @@
 import Component from "../core/Component.js";
 
+export const CATEGORY = {chart:'차트', Whook: 'Whook', event: '이벤트', news:'뉴스', store: '스토어', cash: '충전소'}
+
 export default class Category extends Component{
 
     setup(){
         this.state = {
-            categoryItems: {chart:'차트', Whook: 'Whook', event: '이벤트', news:'뉴스', store: '스토어', cash: '충전소'},
+            categoryItems: CATEGORY,
             selectedItem: this.props.currentCategory
         }
     }
